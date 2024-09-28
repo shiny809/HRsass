@@ -43,7 +43,7 @@ module.exports = {
       // 本地的前端  =》 本地的后端  =》 代理我们向另一个服务器发请求 （行得通）
       // 本地的前端  =》 另外一个服务器发请求 （跨域 行不通）
       '/api': {
-        target: 'http://ihrm-java.itheima.net/', // 代理服务器地址 不用写api
+        target: 'https://heimahr.itheima.net/', // 代理服务器地址 不用写api
         changeOrigin: true
         // 路径重写
         // pathRewrite: {

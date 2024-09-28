@@ -5,7 +5,7 @@ const state = {
   token: getToken() // 设置token 共享状态, 初始化 vuex 从缓存中读取(vuex 持久化)
 }
 // 修改状态
-const muations = {
+const mutations = {
   // 设置token
   setToken(state, token) {
     state.token = token // 将数据设置给vuex
@@ -23,7 +23,7 @@ const actions = {
   // 异步请求 获取 token
   async login(content, data) {
     const result = await login(data)
-    console.log(result)
+    console.log(result)// token值
     // 表示登录接口调用成功 也就是意味着你的用户名和密码是正确的
     content.commit('setToken', result)
   }
@@ -31,6 +31,6 @@ const actions = {
 export default {
   namespaced: true,
   state,
-  muations,
+  mutations,
   actions
 }

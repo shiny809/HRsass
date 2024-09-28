@@ -7,7 +7,7 @@ export function login(data) {
     data
   })
 }
-export function getInfo(token) {
+export function getInfo() {
 
 }
 

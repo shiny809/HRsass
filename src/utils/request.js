@@ -1,15 +1,16 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 const service = axios.create({
-  baseURL: 'VUE_APP_BASE_API'
+  baseURL: process.env.VUE_APP_BASE_API // 环境变量 /dev-api, /prod-api
+  // timeout: 5000 // 超时时间
 
 })
 // 请求拦截器
 service.interceptors.request.use()
 // 相应拦截器
-service.interceptors.response.use()
 service.interceptors.response.use(response => {
   // axios 默认加了一层data
+  console.log(response)
   const { success, message, data } = response.data
   //   根据成功与否决定下面执行的操作
   if (success) {
