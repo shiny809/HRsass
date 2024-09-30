@@ -16,6 +16,7 @@ router.beforeEach((to, from, next) => {
       // 跳转到主页
       next('/')
     } else {
+      store.dispatch('user/getUserInfo')
       next()
     }
   } else {
