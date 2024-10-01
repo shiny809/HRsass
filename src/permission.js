@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css'
 // next-必须执行的钩子，不执行页面会死
 // next() - 放过   next(false) - 跳转终止   next(跳转路径) - 强制跳转到某个地址
 const whiteList = ['/login', '/404']
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   nprogress.start()// 开启进度条
   if (store.getters.token) {
     // 如果有 token
@@ -16,7 +16,12 @@ router.beforeEach((to, from, next) => {
       // 跳转到主页
       next('/')
     } else {
-      store.dispatch('user/getUserInfo')
+      // 只有有token 才获取用户资料，每次都获取吗？
+      // 获取过，就不用获取
+      if (!store.getters.userId) {
+        await store.dispatch('user/getUserInfo')
+        // 后续需要根据用户资料渲染，需要改成同步
+      }
       next()
     }
   } else {

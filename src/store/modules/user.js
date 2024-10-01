@@ -1,5 +1,5 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { login, getUserInfo } from '@/api/user'
+import { login, getUserInfo, getUserDetailById } from '@/api/user'
 // 状态
 const state = {
   token: getToken(), // 设置token 共享状态, 初始化 vuex 从缓存中读取(vuex 持久化)
@@ -37,10 +37,13 @@ const actions = {
     content.commit('setToken', result)
   },
   async getUserInfo(content) {
-    const baseInfo = await getUserInfo()
+    const result = await getUserInfo()
+    const baseInfo = await getUserDetailById(result.userId)
+    const userInfo = { ...result, ...baseInfo }
+    content.commit('setUserInfo', userInfo)
+    console.log(result)
     console.log(baseInfo)
-    content.commit('setUserInfo', baseInfo)
-    return baseInfo // 后续权限会用到,留下伏笔
+    return result// 后续权限会用到,留下伏笔,只返回result 就行
   }
 
 }
