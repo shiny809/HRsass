@@ -44,6 +44,12 @@ const actions = {
     console.log(result)
     console.log(baseInfo)
     return result// 后续权限会用到,留下伏笔,只返回result 就行
+  },
+  // 登出操作
+  logout(content) {
+    // 删除token 及用户资料
+    content.commit('removeToken')
+    content.commit('removeUserInfo')
   }
 
 }
