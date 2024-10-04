@@ -1,4 +1,4 @@
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 import { login, getUserInfo, getUserDetailById } from '@/api/user'
 // 状态
 const state = {
@@ -35,6 +35,8 @@ const actions = {
     console.log(result)// token值
     // 表示登录接口调用成功 也就是意味着你的用户名和密码是正确的
     content.commit('setToken', result)
+    // 拿到token， 设置当前时间戳
+    setTimeStamp()
   },
   async getUserInfo(content) {
     const result = await getUserInfo()
