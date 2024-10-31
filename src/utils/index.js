@@ -115,3 +115,19 @@ export function param2Obj(url) {
   })
   return obj
 }
+
+/* 递归算法->自身调用自身->条件不能一样：数组数据转换为树形数据 */
+export function transListToTreeData(list, rootValue) {
+  const arr = []
+  list.forEach(item => {
+    if (item.pid === rootValue) { // item.pid === ''根节点，但不能写死
+      const children = transListToTreeData(list, item.id)
+      if (children.length) {
+        // children长度不为 0
+        item.children = children
+      }
+      arr.push(item)// 将内容加入到数组中
+    }
+  })
+  return arr
+}
