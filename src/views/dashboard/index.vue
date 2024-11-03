@@ -1,6 +1,16 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
+    <page-tools :show-before="showBefore">
+      <!-- 插槽除了使用slot="name"  还可以v-slot 或 #slotname-->
+      <!-- <span slot="before">
+        前部分
+      </span> -->
+      <template v-slot:before>
+        前部分
+      </template>
+      <div slot="after">后部分</div>
+    </page-tools>
   </div>
 </template>
 
@@ -9,6 +19,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  data() {
+    return {
+      showBefore: true
+    }
+  },
   computed: {
     ...mapGetters([
       'name'

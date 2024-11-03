@@ -15,12 +15,16 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 import * as directives from './directives'
+import components from './components'
 // 注册 所有自定义指令
 
 Object.keys(directives).forEach(key => {
   // 遍历所有的导出的指令对象 完成自定义全局注册
   Vue.directive(key, directives[key])
 })
+
+// 注册自定义组件
+Vue.use(components)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
