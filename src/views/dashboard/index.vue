@@ -11,14 +11,19 @@
       </template>
       <div slot="after">后部分</div>
     </page-tools>
+    <upload-excel />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import UploadExcel from '@/components/UploadExcel'
 
 export default {
   name: 'Dashboard',
+  components: {
+    UploadExcel
+  },
   data() {
     return {
       showBefore: true

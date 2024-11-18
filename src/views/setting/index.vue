@@ -145,6 +145,8 @@ export default {
       try {
         this.$confirm('您确定要删除该角色吗？').then(async() => {
           await deleteRole(id)
+          // 判断是否删除本页最后一个数据---防止页码出错
+          if (this.list.length === 1 && this.page.page > 1) this.page.page--
           this.getRoleList()
           this.$message.success('删除角色成功')
         })

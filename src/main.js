@@ -16,6 +16,7 @@ import '@/icons' // icon
 import '@/permission' // permission control
 import * as directives from './directives'
 import components from './components'
+import * as filters from '@/filters'
 // 注册 所有自定义指令
 
 Object.keys(directives).forEach(key => {
@@ -25,6 +26,12 @@ Object.keys(directives).forEach(key => {
 
 // 注册自定义组件
 Vue.use(components)
+
+// 注册过滤器
+Object.keys(filters).forEach(key => {
+// 遍历所有对象，完成过滤器所有注册
+  Vue.filter(key, filters[key])
+})
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

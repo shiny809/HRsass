@@ -13,7 +13,7 @@ function isCheckTimeOut() {
 }
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API // 环境变量 /dev-api, /prod-api
-  // timeout: 5000 // 超时时间
+  // timeout: 50000 // 超时时间
 
 })
 // 请求拦截器
@@ -40,7 +40,9 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
   // axios 默认加了一层data
   console.log(response)
-  const { success, message, data } = response.data
+  // 判断是不是 Blob格式
+  if (response.data instanceof Blob) return response.data // 返回Blob对象
+  const { success, message, data } = response.data// 默认json格式
   //   根据成功与否决定下面执行的操作
   if (success) {
     return data
