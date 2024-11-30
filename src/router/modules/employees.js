@@ -10,5 +10,12 @@ export default {
     meta: {
       title: '员工管理', icon: 'user'
     }
+  }, {
+    path: 'detail/:id?', // 动态路由参数 ? 含义表示参数可传 可不传
+    component: () => import('@/views/employees/detail'),
+    hidden: true, // 该内容不在左侧菜单显示
+    meta: {
+      title: '员工详情'
+    }
   }]
 }
