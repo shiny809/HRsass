@@ -58,7 +58,7 @@
         <el-col :span="12">
           <el-form-item label="员工头像">
             <!-- 放置上传图片 -->
-
+            <image-upload ref="staffPhoto" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -90,6 +90,7 @@
 
         <el-form-item label="员工照片">
           <!-- 放置上传图片 -->
+          <image-upload />
         </el-form-item>
         <el-form-item label="国家/地区">
           <el-select v-model="formData.nationalArea" class="inputW2">
@@ -364,13 +365,26 @@ export default {
   methods: {
     async getUserDetailById() {
       this.userInfo = await getUserDetailById(this.userId)
+      if (this.userInfo.staffPhoto) {
+        this.$refs.staffPhoto.fileList = [{ url: this.userInfo.staffPhoto, upload: true }]
+      }
     },
     async getPersonalDetail() {
       // 接口已经关闭
       this.formData = await getPersonalDetail(this.userId)
+      if (this.userInfo.myPhoto) {
+        this.$refs.myPhoto.fileList = [{ url: this.formData.myPhoto, upload: true }]
+      }
     },
     async saveUser() {
-      await saveUserDetailById(this.userInfo)
+    // 获取头像中的地址
+      const fileList = this.$refs.staffPhoto.fileList
+      // 判断 图片有没有上传完成
+      if (fileList.some(item => !item.upload)) {
+        return this.$message.warning('您当前还有图片没有上传完成！')
+      }
+      await saveUserDetailById({ ...this.userInfo, staffPhoto: fileList.length ? fileList[0].url : '' })
+      // 注意判断 是否有图片，没有则'',注意不加空格，防止出现空白头像
       this.$message.success('更新信息成功！')
     },
     async savePersonal() {

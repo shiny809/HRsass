@@ -20,6 +20,18 @@
         <el-table v-loading="loading" border="" :data="list">
           <el-table-column label="序号" sortable="" type="index" width="60" align="center" />
           <el-table-column label="姓名" align="center" sortable="" prop="username" />
+          <el-table-column label="头像" align="center">
+            <!-- 插槽 -->
+            <template v-slot="{row}">
+              <img
+                v-imagerror="require('@/assets/common/bigUserHeader.png')"
+                :src="row.staffPhoto"
+                alt=""
+                style="border-radius:50%; width:100px; height:100px; padding: 10px"
+                @click="showQrCode(row.staffPhoto)"
+              >
+            </template>
+          </el-table-column>
           <el-table-column label="工号" align="center" sortable="" prop="workNumber" />
           <el-table-column label="聘用形式" align="center" sortable="" prop="formOfEmployment" :formatter="formatEmployment" />
           <el-table-column label="部门" align="center" sortable="" prop="departmentName" />
@@ -63,6 +75,14 @@
       <add-employee :show-dialog.sync="showDialog" />
       <!-- excel导入弹层 -->
       <import-excel :show-excel-dialog.sync="showExcelDialog" />
+
+      <!-- 二维码弹层 -->
+      <el-dialog title="二维码" :visible.sync="showCodeDialog">
+        <el-row type="flex" justify="center">
+          <canvas ref="myCanvas" />
+        </el-row>
+      </el-dialog>
+
     </div>
   </div>
 </template>
@@ -73,6 +93,7 @@ import EmployeeEnum from '@/api/constant/employees'// 引入员工枚举项
 import AddEmployee from './components/add-employee.vue'
 import ImportExcel from './components/import-excel.vue'
 import FileSaver from 'file-saver'
+import QrCode from 'qrcode'
 export default {
   components: {
     AddEmployee,
@@ -90,7 +111,8 @@ export default {
       loading: false, // 显示遮罩层
       showDialog: false,
 
-      showExcelDialog: false// 控制excel弹层显示
+      showExcelDialog: false, // 控制excel弹层显示
+      showCodeDialog: false// 二维码弹层
     }
   },
   created() {
@@ -141,6 +163,19 @@ export default {
       // 使用npm包 直接将blob数据 下载为本地文件
       FileSaver.saveAs(result, '导出-员工信息表.xlsx')
       this.$message.success('导出成功！请在下载处查看')
+    },
+
+    // 二维码图片显示
+    showQrCode(url) {
+      if (url) {
+        this.showCodeDialog = true// 数据更新了 弹层会立刻出现吗？
+        // 异步，马上获取 canvas，不一定有
+        this.$nextTick(() => {
+          QrCode.toCanvas(this.$refs.myCanvas, url)// 将地址转化为为二维码
+        })
+      } else {
+        this.$message.warning('该用户还未上传图像！')
+      }
     }
   }
 }

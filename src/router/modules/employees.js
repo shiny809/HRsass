@@ -1,3 +1,4 @@
+import components from '@/components'
 import Layout from '@/layout'
 // 员工路由规则
 export default {
@@ -16,6 +17,15 @@ export default {
     hidden: true, // 该内容不在左侧菜单显示
     meta: {
       title: '员工详情'
+    }
+  },
+  {
+    path: 'print/:id?',
+    component: () => import('@/views/employees/print'),
+    hidden: true,
+    meta: {
+      title: '员工打印',
+      icon: 'people'
     }
   }]
 }
