@@ -380,7 +380,7 @@ export default {
     @page {
         // 设置不打印页眉，页码
         size:auto;
-        // margin设置的大小决定是否显示 页码？？？
+        // margin设置的大小决定是否显示
         margin-top:30px;
         margin-bottom: 40px;
     }

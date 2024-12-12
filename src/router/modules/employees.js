@@ -1,4 +1,3 @@
-import components from '@/components'
 import Layout from '@/layout'
 // 员工路由规则
 export default {

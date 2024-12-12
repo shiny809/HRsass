@@ -53,7 +53,7 @@
               <el-button type="text" size="small">转正</el-button>
               <el-button type="text" size="small">调岗</el-button>
               <el-button type="text" size="small">离职</el-button>
-              <el-button type="text" size="small">角色</el-button>
+              <el-button type="text" size="small" @click="editRole(row.id)">角色</el-button>
               <el-button type="text" size="small" @click="delEmployee(row.id)"> 删除</el-button>
             </template>
           </el-table-column>
@@ -83,6 +83,13 @@
         </el-row>
       </el-dialog>
 
+      <!-- 员工角色弹层 -->
+      <assign-role
+        ref="myRole"
+        :show-role-dialog.sync="showRoleDialog"
+        :user-id="userId"
+      />
+
     </div>
   </div>
 </template>
@@ -94,10 +101,12 @@ import AddEmployee from './components/add-employee.vue'
 import ImportExcel from './components/import-excel.vue'
 import FileSaver from 'file-saver'
 import QrCode from 'qrcode'
+import AssignRole from './components/assign-role.vue'
 export default {
   components: {
     AddEmployee,
-    ImportExcel
+    ImportExcel,
+    AssignRole
   },
   data() {
     return {
@@ -112,7 +121,10 @@ export default {
       showDialog: false,
 
       showExcelDialog: false, // 控制excel弹层显示
-      showCodeDialog: false// 二维码弹层
+      showCodeDialog: false, // 二维码弹层
+
+      showRoleDialog: false, // 角色弹层
+      userId: null// 定义userId
     }
   },
   created() {
@@ -176,6 +188,14 @@ export default {
       } else {
         this.$message.warning('该用户还未上传图像！')
       }
+    },
+
+    // 编辑角色
+    async editRole(id) {
+      this.userId = id
+      // 解决闪现
+      await this.$refs.myRole.getUserDetailById(id)
+      this.showRoleDialog = true
     }
   }
 }
