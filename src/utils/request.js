@@ -36,7 +36,7 @@ service.interceptors.request.use(config => {
 
   return Promise.reject(error)
 })
-// 相应拦截器
+// 响应拦截器
 service.interceptors.response.use(response => {
   // axios 默认加了一层data
   console.log(response)

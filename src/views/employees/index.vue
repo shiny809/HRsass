@@ -5,7 +5,7 @@
         <!-- 左侧显示总记录数 -->
         <!-- <span slot="before">共16条记录</span> -->
         <template v-slot:before>
-          <span slot="before">共 {{ page.total }} 条记录</span>
+          <span>共 {{ page.total }} 条记录</span>
         </template>
         <!-- 右侧显示按钮 Excel 导入 Excel 导出 新增员工 -->
         <template v-slot:after>
