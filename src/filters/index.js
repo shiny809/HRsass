@@ -397,3 +397,15 @@ export function getBlob(response) {
 export function imgHandle(obj) {
   return window.URL.createObjectURL(obj)
 }
+
+/* 自行添加成 filters方法 */
+// 将 mixin检查方法 直接作为函数处理数据
+import store from '@/store'
+export function checkPermission(key) {
+  const { roles } = store.state.user.userInfo
+  if (roles && roles.points) {
+    return !roles.points.some(item => item === key)
+  }
+  // 由于使用!()出错，这里直接返回其相反的值！！！！
+  return true
+}

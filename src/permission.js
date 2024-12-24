@@ -20,7 +20,18 @@ router.beforeEach(async(to, from, next) => {
       // 获取过，就不用获取
       if (!store.getters.userId) {
         await store.dispatch('user/getUserInfo')
-        // 后续需要根据用户资料渲染，需要改成同步
+        // 如果后续需要根据用户资料渲染，需要改成同步
+
+        // 筛选用户的可用动态路由，因为路由默认只有静态路由，没有动态路由
+        const { roles } = await store.dispatch('user/getUserInfo')
+        const newRoutes = await store.dispatch('permission/filterRoutes', roles.menus)
+        // 动态路由 添加到路由表中
+        router.addRoutes([...newRoutes, { path: '*', redirect: '/404', hidden: true }])
+
+        // 多做一次跳转，不然路由加载出错
+        // 用了addRoutes后请用 next(to.path),否则会导致刷新路由权限失效
+        // 在添加路由之后应该使用 ** next(to.path) **， 否则会使刷新页面之后 权限消失，这属于一个vue - router的 ** 已知缺陷 **
+        next(to.path)
       }
       next()
     }

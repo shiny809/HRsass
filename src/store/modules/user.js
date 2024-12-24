@@ -1,5 +1,6 @@
 import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 import { login, getUserInfo, getUserDetailById } from '@/api/user'
+import { resetRouter } from '@/router'
 // 状态
 const state = {
   token: getToken(), // 设置token 共享状态, 初始化 vuex 从缓存中读取(vuex 持久化)
@@ -48,10 +49,18 @@ const actions = {
     return result// 后续权限会用到,留下伏笔,只返回result 就行
   },
   // 登出操作
-  logout(content) {
+  logout(context) {
     // 删除token 及用户资料
-    content.commit('removeToken')
-    content.commit('removeUserInfo')
+    context.commit('removeToken')
+    context.commit('removeUserInfo')
+    // ！！！重置路由---防止叠加，用户权限混乱
+    resetRouter()
+    // Vuex子模块怎么调用子模块的action 都没加锁 可以随意调用
+    // 不加命名空间的情况下 mutation和action是挂在全局的 可以直接调用
+    // ？加了命名空间的子模块 如何调用另一个加了命名空间的子模块的mutation
+    // 加了命名空间的context 指的不是全局的 context
+    context.commit('permission/setRoutes', [], { root: true })
+    // 加入 第三个参数{root:true}  context就是全局的context
   }
 
 }

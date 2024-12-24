@@ -11,7 +11,7 @@
         <template v-slot:after>
           <el-button size="small" type="warning" @click="showExcelDialog=true">excel 导入</el-button>
           <el-button size="small" type="danger" @click="exportEmployee">excel 导出</el-button>
-          <el-button size="small" type="primary" icon="el-icon-plus" @click="showDialog=true">
+          <el-button size="small" type="primary" icon="el-icon-plus" :disabled="'point-user-add' | checkPermission" @click="showDialog=true">
             新增员工</el-button>
         </template>
       </page-tools>
@@ -49,12 +49,17 @@
           <el-table-column label="操作" width="260" align="center">
             <!-- 作用域 插槽 -->
             <template slot-scope="{ row }">
-              <el-button type="text" size="small" @click="$router.push(`/employees/detail/${row.id}`)">查看</el-button>
+              <el-button type="text" size="small" :disabled="'point-user-update' | checkPermission" @click="$router.push(`/employees/detail/${row.id}`)">查看</el-button>
               <el-button type="text" size="small">转正</el-button>
               <el-button type="text" size="small">调岗</el-button>
               <el-button type="text" size="small">离职</el-button>
               <el-button type="text" size="small" @click="editRole(row.id)">角色</el-button>
-              <el-button type="text" size="small" @click="delEmployee(row.id)"> 删除</el-button>
+              <el-button
+                type="text"
+                size="small"
+                :disabled="'point-user-delete' | checkPermission"
+                @click="delEmployee(row.id)"
+              > 删除</el-button>
             </template>
           </el-table-column>
         </el-table>

@@ -17,6 +17,8 @@ import '@/permission' // permission control
 import * as directives from './directives'
 import components from './components'
 import * as filters from '@/filters'
+import CheckPermission from './mixin/checkPermission'
+
 // 注册 所有自定义指令
 
 Object.keys(directives).forEach(key => {
@@ -32,6 +34,9 @@ Object.keys(filters).forEach(key => {
 // 遍历所有对象，完成过滤器所有注册
   Vue.filter(key, filters[key])
 })
+
+// 全局混入 检查对象
+Vue.mixin(CheckPermission) // 所有组件都拥有了检查对象
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

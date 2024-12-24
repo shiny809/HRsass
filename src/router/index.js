@@ -56,16 +56,17 @@ export const constantRoutes = [
       path: '',
       component: () => import('@/views/import')
     }]
-  },
-
+  }
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  // 后面动态添加路由，此时需要放在 动态路由之后，不然刷新首先出现 404
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: [...constantRoutes, ...asyncRoutes]// 动态与静态路由临时合并
+  // routes: [...constantRoutes, ...asyncRoutes]// 动态与静态路由临时合并
+  routes: [...constantRoutes]// 默认静态路由
 })
 
 const router = createRouter()
