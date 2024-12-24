@@ -11,6 +11,7 @@ import attendancesRouter from './modules/attendances'
 import salarysRouter from './modules/salarys'
 import settingRouter from './modules/setting'
 import socialRouter from './modules/social'
+import userRouter from './modules/user'
 // 动态路由
 export const asyncRoutes = [
   approvalsRouter,
@@ -56,7 +57,9 @@ export const constantRoutes = [
       path: '',
       component: () => import('@/views/import')
     }]
-  }
+  },
+  // 导入用户路由
+  userRouter
   // 404 page must be placed at the end !!!
   // 后面动态添加路由，此时需要放在 动态路由之后，不然刷新首先出现 404
   // { path: '*', redirect: '/404', hidden: true }

@@ -34,7 +34,7 @@
 
 <script>
 import TreeTools from './components/tree-tools'
-import { getDepartments } from '@/api/department'
+import { getDepartments } from '@/api/departments'
 import { transListToTreeData } from '@/utils'
 import AddDept from './components/add-dept'
 export default {

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { delDepartment } from '@/api/department'
+import { delDepartment } from '@/api/departments'
 export default {
   props: {
     // 定义传入的属性

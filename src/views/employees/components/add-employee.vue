@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { getDepartments } from '@/api/department'
+import { getDepartments } from '@/api/departments'
 import { transListToTreeData } from '@/utils'
 import EmployeeEnum from '@/api/constant/employees'
 import { addEmployee } from '@/api/employees'

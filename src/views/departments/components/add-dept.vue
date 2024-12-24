@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { getDepartments, addDepartment, getDepartDetail, editDepartment } from '@/api/department'
+import { getDepartments, addDepartment, getDepartDetail, editDepartment } from '@/api/departments'
 import { getEmployeeSimple } from '@/api/employees'
 export default {
   name: 'AddDept',

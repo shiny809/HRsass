@@ -8,7 +8,7 @@ export default {
     path: '', // 不用写值，二级路由默认路由
     component: () => import('@/views/setting'), // 动态按需加载
     meta: {
-      title: '公司设置', icon: 'link'
+      title: '公司设置', icon: 'setting'
     }
   }]
 }
