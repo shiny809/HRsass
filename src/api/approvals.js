@@ -3,8 +3,7 @@ import request from '@/utils/request'
 export function getApprovalList(data) {
   return request({
     url: `/user/process/instance/${data.page}/${data.pageSize}`,
-    method: 'put',
-    data
+    method: 'get'
   })
 }
 // 获取审批信息
@@ -48,7 +47,7 @@ export function getApprovalsDetail(id) {
 // 获取流程详情
 export function getApprovalsTaskDetail(id) {
   return request({
-    url: `/user/process/instance/tasks/${id}`
+    url: `/user/process/instance/tasks/detail/${id}`
   })
 }
 // 下载图片
@@ -130,6 +129,15 @@ export function updateUser(data) {
   return request({
     url: `/sys/user/${data.id}`,
     method: 'put',
+    data
+  })
+}
+
+// 提交申请
+export function apply(data) {
+  return request({
+    url: '/user/process/startProcess',
+    method: 'post',
     data
   })
 }

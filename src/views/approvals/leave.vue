@@ -1,7 +1,7 @@
 <template>
   <div class="quitApproval">
     <div class="contLeft">
-      <h2>{{ information.user_name }}申请请假</h2>
+      <h2>{{ information.username }}申请请假</h2>
       <div class="topTit">
         <img src="@/assets/common/img.jpeg" alt>
         <div class="info">

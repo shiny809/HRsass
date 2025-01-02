@@ -58,19 +58,19 @@
           </el-table-column>-->
           <el-table-column label="审批状态">
             <template slot-scope="scope">
-              <span v-if="scope.row.processState==='0'" class="rovalsState">
+              <span v-if="scope.row.processState===0" class="rovalsState">
                 <em class="sub" />已提交
               </span>
-              <span v-if="scope.row.processState==='1'" class="rovalsState">
+              <span v-if="scope.row.processState===1" class="rovalsState">
                 <em class="stay" />审批中
               </span>
-              <span v-if="scope.row.processState==='2'" class="rovalsState">
+              <span v-if="scope.row.processState===2" class="rovalsState">
                 <em class="adopt" />审批通过
               </span>
-              <span v-if="scope.row.processState==='3'" class="rovalsState">
+              <span v-if="scope.row.processState===3" class="rovalsState">
                 <em class="reject" />审批不通过
               </span>
-              <span v-if="scope.row.processState==='4'" class="rovalsState">
+              <span v-if="scope.row.processState===4" class="rovalsState">
                 <em class="revoke" />撤销
               </span>
             </template>
@@ -79,21 +79,21 @@
             <template slot-scope="scope">
               <!--  && (item.row.stateOfApproval == '待审批' || item.row.stateOfApproval == '已驳回') -->
               <el-button
-                v-show="(tagName == 'launch')&&(scope.row.processState==='1')"
+                v-show="(tagName == 'launch')&&(scope.row.processState===1)"
                 size="mini"
                 type="text"
                 @click="clickPass('4',scope.row.processId)"
               >撤销</el-button>
               <!--  && item.row.currentApproverId == userId -->
               <el-button
-                v-show="(tagName == 'copy' || tagName == 'approvals')&&(scope.row.processState==='1')"
+                v-show="(tagName == 'copy' || tagName == 'approvals')&&(scope.row.processState===1)"
                 size="mini"
                 type="text"
                 @click="clickPass('2',scope.row.processId)"
               >通过</el-button>
               <!--  && item.row.currentApproverId == userId -->
               <el-button
-                v-show="(tagName == 'copy' || tagName == 'approvals')&&(scope.row.processState==='1')"
+                v-show="(tagName == 'copy' || tagName == 'approvals')&&(scope.row.processState===1)"
                 size="mini"
                 type="text"
                 @click="clickPass('3',scope.row.processId)"

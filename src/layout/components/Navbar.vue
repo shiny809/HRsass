@@ -12,6 +12,9 @@
     <!-- <breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
+      <!-- 放置全屏 组件 -->
+      <screen-full class="right-menu-item" style="color:#fff; width: 20px; height: 20px;margin-right:30px;" />
+
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img v-imagerror="defaultImg" src="https://img2.baidu.com/it/u=503527429,390831611&fm=253" class="user-avatar">
@@ -59,6 +62,7 @@ export default {
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       this.$message.success('退出登录')
     }
+
   }
 }
 </script>
@@ -118,7 +122,6 @@ export default {
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
-      vertical-align: text-bottom;
 
       &.hover-effect {
         cursor: pointer;
@@ -126,8 +129,12 @@ export default {
 
         &:hover {
           background: rgba(0, 0, 0, 0.025);
+
         }
       }
+        &:hover{
+          cursor: pointer;
+         }
     }
 
     .avatar-container {

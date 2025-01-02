@@ -1,7 +1,7 @@
 <template>
   <div class="quitApproval">
     <div class="contLeft">
-      <h2>{{ information.user_name }}申请离职</h2>
+      <h2>{{ information.username }}申请离职</h2>
       <div class="topTit">
         <img src="@/assets/common/img.jpeg" alt>
         <div class="info">
@@ -42,7 +42,7 @@
             <!-- <p>{{item.description}}</p> -->
           </div>
           <div class="act">
-            <strong>{{ item.shouldUserName }}</strong>
+            <strong>{{ item.handleUserName }}</strong>
             <span v-if="item.handleType == '3'">审批驳回</span>
             <span v-else-if="item.handleType == '4'">已撤销</span>
             <span v-else-if="item.handleType == '1'">未开始</span>

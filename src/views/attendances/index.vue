@@ -241,7 +241,11 @@ export default {
       const month = monthOfReport
       var d = new Date(year, month, 0) // 获取月份
       this.monthOfReport = d.getDate() // 获取日期
-      this.yearMonth = year + ('' + month < 10 ? '0' + month : month)
+      // this.yearMonth = year + ('' + month < 10 ? '0' + month : month)
+      // 上面会累积加和，出现日期月份（202412）错误！！！！！
+      this.yearMonth = year + '' + (month < 10 ? '0' + month : month)
+      console.log(this.yearMonth)
+
       this.month = monthOfReport
       this.loading = false
     },

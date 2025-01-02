@@ -3,10 +3,12 @@ import PageTools from './PageTools'
 import UploadExcel from './UploadExcel'
 import ImageUpload from './ImageUpload'
 import Print from 'vue-print-nb'
+import ScreenFull from './ScreenFull'
 const components = {
   PageTools,
   UploadExcel,
-  ImageUpload
+  ImageUpload,
+  ScreenFull
 }
 export default {
   // install(Vue) {

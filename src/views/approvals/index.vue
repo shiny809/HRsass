@@ -22,21 +22,21 @@
               <span>{{ scope.row.procApplyTime | formatDate }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="process_state" label="审批状态" sortable>
+          <el-table-column prop="processState" label="审批状态" sortable>
             <template slot-scope="scope">
-              <span v-if="scope.row.processState==='0'" class="rovalsState">
+              <span v-if="scope.row.processState===0" class="rovalsState">
                 <em class="sub" />已提交
               </span>
-              <span v-if="scope.row.processState==='1'" class="rovalsState">
+              <span v-if="scope.row.processState===1" class="rovalsState">
                 <em class="stay" />审批中
               </span>
-              <span v-if="scope.row.processState==='2'" class="rovalsState">
+              <span v-if="scope.row.processState===2" class="rovalsState">
                 <em class="adopt" />审批通过
               </span>
-              <span v-if="scope.row.processState==='3'" class="rovalsState">
+              <span v-if="scope.row.processState===3" class="rovalsState">
                 <em class="reject" />审批不通过
               </span>
-              <span v-if="scope.row.processState==='4'" class="rovalsState">
+              <span v-if="scope.row.processState===4" class="rovalsState">
                 <em class="revoke" />撤销
               </span>
             </template>

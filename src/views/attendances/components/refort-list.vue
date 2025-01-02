@@ -91,6 +91,7 @@ export default {
       loading: false,
       centerDialogVisible: false,
       infoTip: '',
+      params: this.$route.params,
       month: this.$route.params.month
     }
   },
@@ -114,7 +115,9 @@ export default {
   },
   // 创建完毕状态
   created() {
-    this.requestParameters.atteDate = this.yearMonth
+    console.log(this.params)
+
+    this.requestParameters.atteDate = this.month
     this.reportFormList()
   },
   // 组件更新
@@ -122,7 +125,7 @@ export default {
     // 业务方法
     async  reportFormList(params) {
       this.loading = true
-      this.dataList = await reportFormList(this.requestParameters)
+      this.dataList = await reportFormList({ atteDate: this.requestParameters.atteDate })
       this.loading = false
     },
     // 新增用户刷新列表
