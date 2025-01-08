@@ -6,6 +6,7 @@ export default {
   component: Layout,
   children: [{
     path: '', // 不用写值，二级路由默认路由
+    name: 'departments',
     component: () => import('@/views/departments'), // 动态按需加载
     meta: {
       title: '组织架构', icon: 'tree'

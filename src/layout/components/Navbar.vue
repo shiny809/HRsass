@@ -12,8 +12,14 @@
     <!-- <breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
+      <!-- 放置 多语言切换图标 -->
+      <!-- <LangSelect class="right-menu-item" style="color:#fff;font-size:25px;margin-top:-5px" /> -->
+      <LangSelect class="right-menu-item" />
+      <!-- 放置切换主题组件 -->
+      <theme-picker class="right-menu-item" />
       <!-- 放置全屏 组件 -->
-      <screen-full class="right-menu-item" style="color:#fff; width: 20px; height: 20px;margin-right:30px;" />
+      <screen-full class="right-menu-item" />
+      <!-- <screen-full class="right-menu-item" style="color:#fff;font-size:23px;margin-top:-3px;margin-right:5px" /> -->
 
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -122,6 +128,7 @@ export default {
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
+      vertical-align:middle;
 
       &.hover-effect {
         cursor: pointer;

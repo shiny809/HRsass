@@ -6,6 +6,7 @@ export default {
   component: Layout,
   children: [{
     path: '', // 不用写值，二级路由默认路由
+    name: 'permissions',
     component: () => import('@/views/permission'), // 动态按需加载
     meta: {
       title: '权限管理', icon: 'password'

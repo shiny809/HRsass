@@ -4,11 +4,17 @@ import UploadExcel from './UploadExcel'
 import ImageUpload from './ImageUpload'
 import Print from 'vue-print-nb'
 import ScreenFull from './ScreenFull'
+import ThemePicker from './ThemePicker'
+import LangSelect from './Lang'
+import tagsView from './TagsView'
 const components = {
   PageTools,
   UploadExcel,
   ImageUpload,
-  ScreenFull
+  ScreenFull,
+  ThemePicker,
+  LangSelect,
+  tagsView
 }
 export default {
   // install(Vue) {

@@ -22,9 +22,9 @@
         <el-table-column label="描述" align="center" prop="description" />
         <el-table-column label="操作" align="center">
           <template v-slot="{row}">
-            <el-button v-if="row.type===1?true:false" type="text" @click="addPermission(2,row.id)">添加</el-button>
-            <el-button type="text" @click="editPermission(row.id)">编辑</el-button>
-            <el-button type="text" @click="delPermission(row.id)">删除</el-button>
+            <el-button v-if="row.type===1?true:false" type="text" @click="addPermission(2,row.id)">{{ $t('table.add') }}</el-button>
+            <el-button type="text" @click="editPermission(row.id)">{{ $t('table.edit') }}</el-button>
+            <el-button type="text" @click="delPermission(row.id)">{{ $t('table.delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -54,8 +54,8 @@
       <!-- 底部确定与取消 -->
       <el-row slot="footer" type="flex" justify="center">
         <el-col :span="6">
-          <el-button type="primary" size="small" @click="btnOk ">确定</el-button>
-          <el-button size="small" @click="btnCancel">取消</el-button>
+          <el-button type="primary" size="small" @click="btnOk ">{{ $t('table.confirm') }}</el-button>
+          <el-button size="small" @click="btnCancel">{{ $t('table.cancel') }}</el-button>
         </el-col>
       </el-row>
     </el-dialog>

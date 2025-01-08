@@ -6,6 +6,7 @@ export default {
   component: Layout,
   children: [{
     path: '', // 不用写值，二级路由默认路由
+    name: 'employees',
     component: () => import('@/views/employees'), // 动态按需加载
     meta: {
       title: '员工管理', icon: 'user'
